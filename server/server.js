@@ -78,7 +78,7 @@ function uploadFiles(req, res) {
   })  
 } 
 app.listen(5000, () => {
-    console.log(`Server started...`);
+    console.log(`✨🌟 Server started...🌟✨`);
 });
 
 function reverse(seq) {
