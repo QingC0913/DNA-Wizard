@@ -1,1 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DNA</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>DNA Wizard</h1>
+    <h2>DNA Features Extraction Tool</h2>
+  </header>
+  <div class="container">
+    <div>Upload FASTA File</div>
+    
+    <form id='form'>
+      <div id = "uploadBox"> 
+        <div class="input-group">
+            <!-- <label for='files'>Select file</label> -->
+            <input id='file' type="file">
+            <label for="file" class="custom-file-upload">Choose File</label>
+        </div>
+        <div id = "upload-text">
+          Upload a FASTA file to begin extracting features from your sequence
+        </div>
+      </div>
+        <div class="input-group">
+          <label for='len'>
+            <input id="len" name="len" value="len" class="opt" type="checkbox">
+            Length
+          </label>
+          <label for='gcratio'>
+            <input id="gcratio" name="gcratio" value="gcratio" class="opt" type="checkbox">
+            GC Ratio
+          </label>
+          <label for='nfreq'>
+            <input id="nfreq" name="nfreq" value="nfreq" class="opt" type="checkbox">
+            Nucleotide Frequency
+          </label>
+          <label for='compl'>
+            <input id="compl" name="compl" value="compl" class="opt" type="checkbox">
+            Complement
+          </label>
+          <label for='rev'>
+            <input id="rev" name="rev" value="rev" class="opt" type="checkbox">
+            Reverse
+          </label>
+          <label for='revcompl'>
+            <input id="revcompl" name="revcompl" class="opt" value="revcompl" type="checkbox">
+            Reverse Complement
+          </label>
+          <label for='prot'>
+            <input id="prot" name="prot" value="prot" class="opt" type="checkbox">
+            Amino Acid Seq (3 frames)
+          </label>
+          <label for='all'>
+            <input id="all" name="all" value="all" type="checkbox" id="all">
+            Select All
+          </label>
+      </div>
+        <button class="submit-btn" type='submit'>Upload and Extract!</button>
+    </form>
+    <div id = "space">
 
+    </div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+  <script src='./script.js'></script>
+</body>
+</html>

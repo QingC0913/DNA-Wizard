@@ -1,0 +1,56 @@
+/* header */
+header {
+  display: grid;
+  grid-template-columns: repeat(5, auto);
+  background-color: #98D8AA;
+  padding: 0.5em;
+}
+h1, h2 {
+  display: inline;
+}
+/* upload box */
+#uploadBox {
+  border: 3px dotted black;
+}
+/* file button */
+input[type="file"] {
+  display: none; 
+}
+
+/* Style the custom button to look like the "Choose File" button */
+.custom-file-upload {
+  display: inline-block;
+  background-color: #007bff;
+  color: #fff;
+  border: 1px solid #007bff;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+/* Style the button when hovering over it */
+.custom-file-upload:hover {
+  background-color: #0056b3;
+}
+
+/* Style the file input's label to resemble a button */
+button, label[for="file"] {
+  display: inline-block;
+  /* padding: 6px 12px; */
+  padding: 1em 2em;
+  background-color: #007bff;
+  color: #fff;
+  border: 1px solid #007bff;
+  /* border-radius: 5px; */
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* buttons */
+button {
+  background-color: #F7D060;
+}
+
+.red {
+  color: red;
+}
