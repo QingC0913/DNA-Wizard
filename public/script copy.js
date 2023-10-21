@@ -1,8 +1,6 @@
 const form = document.getElementById("form");
 const FASTA = "fasta";
-let hey; 
 form.addEventListener("submit", submitForm);
-let uploadText = "Upload a FASTA file to begin extracting features from your sequence"; 
 
 const all = $("#all"); 
 all.on("change", function() {
@@ -13,7 +11,6 @@ all.on("change", function() {
 function submitForm(e) {
     e.preventDefault();
     const file = $("#file"); 
-
     const formData = new FormData();
 
     $('.opt').each(function(obj) {
@@ -24,18 +21,17 @@ function submitForm(e) {
     if (file.val() != "") {
         const fasta =  file.prop('files')[0]; 
         if (isValidFASTA(fasta)) {
-            formData.append("file", fasta);
             $("#upload-text").html(fasta.name);
+            formData.append("file", fasta);
+            console.log("added form content "); 
             sendFile(formData); 
+            console.log("sent form");
         }
-        else {      
-            console.log("NOT FASTA!!!");
-            $("#upload-text").html("<span class='red'>Uploaded file does not have .fasta extension! </span>" + uploadText);           
-        }
+        else { console.log("NOT FASTA!!!"); }
     } else {
-        console.log("no file selected");
-        $("#upload-text").html(
-            "<span class='red'>No file selected! </span>" + uploadText);      
+        let text = $("#upload-text").html();
+        text = "<span class='red'>No file selected!</span>" + text;
+        $("#upload-text").html(text);
     }
 }
 function isValidFASTA(fasta) {
@@ -73,6 +69,7 @@ function handleData(data) {
 }
 
 function sendFile(formData) {
+    console.log(formData);
     fetch("http://localhost:5000/upload_file", {
         // mode: 'no-cors',
         method: 'POST',
