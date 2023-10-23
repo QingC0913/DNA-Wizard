@@ -11,13 +11,13 @@
     <h1>DNA Wizard</h1>
     <h2>DNA Features Extraction Tool</h2>
   </header>
-  <div id = "box2">
-    Upload FASTA File
-  </div>
-  <div id = "box3">
+  <div class="container">
+    <div>Upload FASTA File</div>
+    
     <form id='form'>
       <div id = "uploadBox"> 
         <div class="input-group">
+            <!-- <label for='files'>Select file</label> -->
             <input id='file' type="file">
             <label for="file" class="custom-file-upload">Choose File</label>
         </div>
@@ -38,7 +38,6 @@
             <input id="nfreq" name="nfreq" value="nfreq" class="opt" type="checkbox">
             Nucleotide Frequency
           </label>
-          <br>
           <label for='compl'>
             <input id="compl" name="compl" value="compl" class="opt" type="checkbox">
             Complement
@@ -51,12 +50,10 @@
             <input id="revcompl" name="revcompl" class="opt" value="revcompl" type="checkbox">
             Reverse Complement
           </label>
-          <br>
           <label for='prot'>
             <input id="prot" name="prot" value="prot" class="opt" type="checkbox">
             Amino Acid Seq (3 frames)
           </label>
-          <br>
           <label for='all'>
             <input id="all" name="all" value="all" type="checkbox" id="all">
             Select All
@@ -64,21 +61,8 @@
       </div>
         <button class="submit-btn" type='submit'>Upload and Extract!</button>
     </form>
-  </div>
-  <div id = "box4">
-    <div class = "space">
-      <div>length: 100</div>
-      <div>GC ratio: 78%</div>
-      <div>nuc freq: 25 25 25 25</div>
-      <div>reverse: aldkfjalskdjflaks;djf;l;ksdjflksdjf</div>
-      <div>complement: lajdlfkajdlkfdh2oijinkdflkadlfjkld</div>
-    </div>
-    <div class = "space">
-      <div>length: 100</div>
-      <div>GC ratio: 78%</div>
-      <div>nuc freq: 25 25 25 25</div>
-      <div>reverse: aldkfjalskdjflaks;djf;l;ksdjflksdjf</div>
-      <div>complement: lajdlfkajdlkfdh2oijinkdflkadlfjkld</div>
+    <div id = "space">
+
     </div>
   </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>

@@ -1,31 +1,74 @@
+html {
+  min-width: 300px; 
+  max-width: 100%;
+}
+body {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 1fr 0.5fr 0.5fr 0.5fr 3fr 3fr;
+  margin: 0 auto;
+  background-color: #F3E99F;
+}
 /* header */
 header {
-  display: grid;
-  grid-template-columns: repeat(5, auto);
   background-color: #98D8AA;
   padding: 0.5em;
+  grid-column: 1 / span 5;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-areas: "h1 h2 h2 h2 null";
 }
-h1, h2 {
-  display: inline;
+h1 {
+  grid-area: h1;
+}
+h2 {
+  grid-area: h2;
+  text-align: center;
+}
+#box2, #box3, #box4 {
+  grid-column: 2 / span 3;
+  text-align: center;
+}
+#box2 {
+  grid-row: 3 / 4;
+  font-size: 2em;
+}
+#box3 {
+  grid-row: 5 / 6;
+}
+#box4 {
+  grid-row: 6 / 7;
+  text-align: left;
 }
 /* upload box */
 #uploadBox {
   border: 3px dotted black;
+  padding: 2em;
+  padding-bottom: 1em;
+  margin-bottom: 1em;
+  border-radius: 25px;
 }
+
+.space {
+  border: 1px solid black;
+  border-radius: 25px;
+  padding: 1em;
+  margin-bottom: 1em;
+  background-color: #FF6D60;
+}
+
 /* file button */
 input[type="file"] {
   display: none; 
 }
-
 /* Style the custom button to look like the "Choose File" button */
 .custom-file-upload {
   display: inline-block;
-  background-color: #007bff;
-  color: #fff;
-  border: 1px solid #007bff;
-  border-radius: 5px;
+  background-color: #F7D060;
+  border-radius: 8px;
   padding: 5px 10px;
   cursor: pointer;
+  margin-bottom: 1em;
 }
 
 /* Style the button when hovering over it */
@@ -36,12 +79,8 @@ input[type="file"] {
 /* Style the file input's label to resemble a button */
 button, label[for="file"] {
   display: inline-block;
-  /* padding: 6px 12px; */
   padding: 1em 2em;
-  background-color: #007bff;
-  color: #fff;
-  border: 1px solid #007bff;
-  /* border-radius: 5px; */
+  background-color: #F7D060;
   border-radius: 8px;
   cursor: pointer;
 }
@@ -49,6 +88,9 @@ button, label[for="file"] {
 /* buttons */
 button {
   background-color: #F7D060;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  border: none;
 }
 
 .red {
