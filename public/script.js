@@ -45,7 +45,7 @@ function isValidFASTA(fasta) {
 }
 function handleData(data) {
     console.log(data); 
-    let div = ""; 
+    let div = "<div class = 'space'>"; 
     if (data.len) {
         console.log("data.len is not null"); 
         console.log(data.len);
@@ -69,7 +69,8 @@ function handleData(data) {
     if (data.prot) {
         div += `<div>GC Ratio: ${data.prot}</div>`;
     }
-    $("#space").html(div); 
+    div += "</div>"
+    $("#box4").html(div); 
 }
 
 function sendFile(formData) {

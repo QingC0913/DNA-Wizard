@@ -5,7 +5,7 @@ html {
 body {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: 1fr 0.5fr 0.5fr 0.5fr 3fr 3fr;
+  grid-template-rows: 1fr 0.25fr 0.5fr 0.25fr 3fr 3fr;
   margin: 0 auto;
   background-color: #F3E99F;
 }
@@ -39,6 +39,7 @@ h2 {
 #box4 {
   grid-row: 6 / 7;
   text-align: left;
+  word-wrap: break-word;
 }
 /* upload box */
 #uploadBox {
@@ -73,7 +74,7 @@ input[type="file"] {
 
 /* Style the button when hovering over it */
 .custom-file-upload:hover {
-  background-color: #0056b3;
+  background-color: #FF6D60;
 }
 
 /* Style the file input's label to resemble a button */
