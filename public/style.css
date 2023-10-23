@@ -20,6 +20,7 @@ header {
 }
 h1 {
   grid-area: h1;
+  text-align: right;
 }
 h2 {
   grid-area: h2;
@@ -31,7 +32,8 @@ h2 {
 }
 #box2 {
   grid-row: 3 / 4;
-  font-size: 2em;
+  font-size: 1.5em;
+  font-weight: bold;
 }
 #box3 {
   grid-row: 5 / 6;

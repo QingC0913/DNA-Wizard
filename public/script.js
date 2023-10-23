@@ -30,7 +30,7 @@ function submitForm(e) {
         }
         else {      
             console.log("NOT FASTA!!!");
-            $("#upload-text").html("<span class='red'>Uploaded file does not have .fasta extension! </span>" + uploadText);           
+            $("#upload-text").html("<div class='red'>Uploaded file does not have .fasta extension! </div>" + uploadText);           
         }
     } else {
         console.log("no file selected");
