@@ -7,12 +7,12 @@ body {
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: 1fr 0.25fr 0.25fr 0.25fr 3fr auto;
   margin: 0 auto;
-  background-color: #F3E99F;
+  background-color: #ffd449;
 }
 /* header */
 header {
   width: 100%;
-  background-color: #98D8AA;
+  background-color: #548c2f;
   padding: 0.5em;
   grid-column: 1 / span 5;
   display: grid;
@@ -61,12 +61,15 @@ h2 {
   border-radius: 25px;
 }
 
-.space {
+.space, .space2 {
   border: 1px solid black;
   border-radius: 25px;
   padding: 1em;
   margin-bottom: 1em;
-  background-color: #FF6D60;
+  background-color: #A8D5E2;
+}
+.space2 {
+  background-color: #F9a620;
 }
 
 .key {
@@ -92,33 +95,29 @@ input[type="file"] {
 }
 /* Style the custom button to look like the "Choose File" button */
 .custom-file-upload {
-  display: inline-block;
-  background-color: #F7D060;
-  border-radius: 8px;
-  padding: 5px 10px;
   cursor: pointer;
-  margin-bottom: 1em;
 }
 
 /* Style the button when hovering over it */
 .custom-file-upload:hover {
-  background-color: #FF6D60;
+  background-color: #104911;
 }
+
 
 /* Style the file input's label to resemble a button */
 button, label[for="file"] {
   display: inline-block;
   padding: 1em 2em;
-  background-color: #F7D060;
+  background-color: #548c2f;
+  color: white;
   border-radius: 8px;
   cursor: pointer;
+  margin-bottom: 1em;
 }
 
 /* buttons */
 button {
-  background-color: #F7D060;
   margin-top: 1em;
-  margin-bottom: 1em;
   border: none;
 }
 
