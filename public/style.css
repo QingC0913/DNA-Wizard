@@ -79,6 +79,9 @@ h2 {
 .black {
   color: black;
 }
+.acgt {
+  color: orange;
+}
 
 #hidden-input {
   visibility: hidden;

@@ -24,7 +24,7 @@ function uploadFiles(req, res) {
     }  
     // Parse the FASTA content using biojs-io-fasta
     const sequences = fasta.parse(data);
-    let first = sequences[0].seq.toUpperCase(); 
+    let first = sequences[0].seq.toUpperCase().trim(); 
     let firstName = sequences[0].name; 
     let len = null, gcat = [], gc = null, compl = null, rev = null,
         revcompl = null, prot = null; 
@@ -39,7 +39,7 @@ function uploadFiles(req, res) {
     if (body.gcratio === "true") {
       console.log("in gcratio is true, what is gcat array?: ", gcat);
       if (gcat.length === 0) {
-        gc = gc(first); 
+        gc = calc_gc(first); 
         console.log("gc: ", gc);
       }
       else {
@@ -79,6 +79,7 @@ function uploadFiles(req, res) {
       }, {});
     }
     let returnObj = {
+      seq: first, 
       name: firstName, 
       len: len, 
       gc: gc, 
@@ -101,6 +102,10 @@ function reverse(seq) {
 }
 
 function length(seq) {
+  console.log(seq); 
+  console.log(seq.length); 
+  console.log(seq[1]); 
+  console.log(seq[seq.length - 1]);
   return seq.length;
 }
 
@@ -139,7 +144,7 @@ function freq(seq) {
   return [a, c, g, t];
 }
 
-function gc(seq) {
+function calc_gc(seq) {
   let len = seq.length; 
   let count = 0;  
   for (let i = 0; i < len; i++) {

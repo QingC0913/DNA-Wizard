@@ -79,6 +79,8 @@ function handleData(data) {
     console.log(data); 
     let div = `<div class = 'space'>`; 
     div += `<p>> ${data.name} </span></p>`
+    div += `<p><span class='key'>Sequence:</span>
+                <span class = 'value'> ${data.seq} </span></p>`
     if (data.len) {
         console.log("data.len is not null"); 
         console.log(data.len);
@@ -91,7 +93,12 @@ function handleData(data) {
     }
     if (data.gcat.length > 0) {
         div += `<p><span class = 'key'>Nucleotide Frequency:</span>
-        <span class = 'value'> ${data.gcat}</span></p>`;
+        <span class = 'value'>`; 
+        labels = ['A', 'C', 'G', 'T']; 
+        for (let i = 0; i < labels.length; i++) {
+            div += `<span class = acgt>${labels[i]}: </span>${data.gcat[i]}&nbsp;&nbsp;&nbsp;`; 
+        }
+        div += `</span></p>`;
     }
     if (data.compl) {
         div += `<p><span class = 'key'>Complement:</span>
@@ -107,7 +114,7 @@ function handleData(data) {
     }
     if (data.prot) {
         let aa = Object.entries(data.prot)
-        .map(([key, value]) => `<div><span class = 'black'>${key}:</span> ${value}</div>`)
+        .map(([key, value]) => `<div><span class = 'black'>${key}</span> ${value}</div>`)
         .join('');
 
         div += `<div><span class = 'key'>Amino Acid Seq:</span>
