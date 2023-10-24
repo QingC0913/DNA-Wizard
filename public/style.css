@@ -20,14 +20,20 @@ header {
   grid-template-areas: "h1 h2 h2 h2 h3";
   position: fixed;
   top: 0;
+  text-align: center;
 }
 h1 {
   grid-area: h1;
-  text-align: center;
+  /* background-image: linear-gradient(to left, #553c9a, #b393d3); */
+  
 }
 h2 {
   grid-area: h2;
-  text-align: center;
+  /* gradient */
+  background-image: linear-gradient(to right, #FF6D60 40%, #F7D060);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
 }
 #box2, #box3, #box4 {
   grid-column: 2 / span 3;
@@ -61,6 +67,17 @@ h2 {
   padding: 1em;
   margin-bottom: 1em;
   background-color: #FF6D60;
+}
+
+.key {
+  font-size: 18px;
+  font-weight: bold;
+}
+.value {
+  color: white;
+}
+.black {
+  color: black;
 }
 
 #hidden-input {

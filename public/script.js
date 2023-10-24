@@ -48,7 +48,7 @@ function submitForm(e) {
         }
     } else {
         $("#upload-text").html(
-            "<span class='red'>No file selected! </span>" + uploadText);      
+            "<span class='red'>No file selected! </span><span class = 'value'>" + uploadText);      
     }
 }
 function isValidFASTA(fasta) {
@@ -77,48 +77,42 @@ function sendFile(formData) {
 
 function handleData(data) {
     console.log(data); 
-    let div = `<div class = 'space'> > ${data.name} </p>`; 
+    let div = `<div class = 'space'>`; 
+    div += `<p>> ${data.name} </span></p>`
     if (data.len) {
         console.log("data.len is not null"); 
         console.log(data.len);
-        div += `<p>Length: ${data.len}</p>`;
+        div += `<p><span class = 'key'>Length:</span>
+        <span class = 'value'> ${data.len}</span></p>`;
     }
     if (data.gc) {
-        div += `<p>GC Ratio: ${data.gc}</p>`;
+        div += `<p><span class = 'key'>GC Ratio:</span>
+        <span class = 'value'> ${data.gc}</span></p>`;
     }
     if (data.gcat.length > 0) {
-        div += `<p>Nucleotide Frequency: ${data.gcat}</p>`;
+        div += `<p><span class = 'key'>Nucleotide Frequency:</span>
+        <span class = 'value'> ${data.gcat}</span></p>`;
     }
     if (data.compl) {
-        div += `<p>Complement: ${data.compl}</p>`;
+        div += `<p><span class = 'key'>Complement:</span>
+        <span class = 'value'> ${data.compl}</span></p>`;
     }
     if (data.rev) {
-        div += `<p>Reverse: ${data.rev}</p>`;
+        div += `<p><span class = 'key'>Reverse:</span>
+        <span class = 'value'>${data.rev}</span></p>`;
     }
     if (data.revcompl) {
-        div += `<p>Reverse Complement: ${data.revcompl}</p>`;
+        div += `<p><span class = 'key'>Reverse Complement:</span>
+        <span class = 'value'> ${data.revcompl}</span></p>`;
     }
     if (data.prot) {
         let aa = Object.entries(data.prot)
-        .map(([key, value]) => `<div>${key}: ${value}</div>`)
+        .map(([key, value]) => `<div><span class = 'black'>${key}:</span> ${value}</div>`)
         .join('');
 
-        div += `<div>Amino Acid Seq: ${aa}</div>`;
+        div += `<div><span class = 'key'>Amino Acid Seq:</span>
+        <span class = 'value'> ${aa}</span></div>`;
     }
     div += "</div>"
     $("#box4").html(div); 
-}
-
-function f(aa) {
-    const labels = ["5'3' Frame 1", "5'3' Frame 2", "5'3' Frame 3", 
-                    "3'5' Frame 1", "3'5' Frame 2", "3'5' Frame 3"]; 
-    if (aa.length === 1) {
-        const dictionary = keys.reduce((acc, key, index) => {
-            acc[key] = values[index];
-            return acc;
-          }, {});
-          
-          console.log(dictionary);
-          
-    }
 }
