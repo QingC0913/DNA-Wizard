@@ -5,22 +5,25 @@ html {
 body {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: 1fr 0.25fr 0.5fr 0.25fr 3fr 3fr;
+  grid-template-rows: 1fr 0.25fr 0.25fr 0.25fr 3fr auto;
   margin: 0 auto;
   background-color: #F3E99F;
 }
 /* header */
 header {
+  width: 100%;
   background-color: #98D8AA;
   padding: 0.5em;
   grid-column: 1 / span 5;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  grid-template-areas: "h1 h2 h2 h2 null";
+  grid-template-areas: "h1 h2 h2 h2 h3";
+  position: fixed;
+  top: 0;
 }
 h1 {
   grid-area: h1;
-  text-align: right;
+  text-align: center;
 }
 h2 {
   grid-area: h2;
@@ -60,6 +63,9 @@ h2 {
   background-color: #FF6D60;
 }
 
+#hidden-input {
+  visibility: hidden;
+}
 /* file button */
 input[type="file"] {
   display: none; 
