@@ -5,7 +5,7 @@ html {
 body {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: 1fr 0.25fr 0.25fr 0.25fr 3fr auto;
+  grid-template-rows: 1fr 0.25fr 0.25fr 0.25fr 3fr auto auto;
   margin: 0 auto;
   background-color: #ffd449;
 }
@@ -51,6 +51,15 @@ h2 {
   grid-row: 6 / 7;
   text-align: left;
   word-wrap: break-word;
+}
+#box5 {
+  grid-row: 7 / 8; 
+  grid-column: 5 / 6;
+}
+
+#box5 a {
+  text-decoration: none;
+  color: white;
 }
 /* upload box */
 #uploadBox {
