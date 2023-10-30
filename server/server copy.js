@@ -1,5 +1,5 @@
 import fs from 'fs';
-import Fasta from 'biojs-io-fasta';
+import fasta from 'biojs-io-fasta';
 import express from 'express'; 
 import multer from 'multer'; 
 import cors from "cors"; 
@@ -23,22 +23,24 @@ function uploadFiles(req, res) {
       return;
     }  
     // Parse the FASTA content using biojs-io-fasta
-    const sequences = Fasta.parse(data);
-    let to_return = []; 
-    sequences.forEach(sequence => {
-    let first = sequence.seq.toUpperCase().trim(); 
-    let seqName = sequence.name; 
+    const sequences = fasta.parse(data);
+    let first = sequences[0].seq.toUpperCase().trim(); 
+    let firstName = sequences[0].name; 
     let len = null, gcat = [], gc = null, compl = null, rev = null,
         revcompl = null, prot = null; 
     if (body.len === "true") {
       len = length(first); 
+      console.log("length: ", len); 
     }
     if (body.nfreq === "true") {
       gcat = freq(first);
+      console.log("frequencies:", gcat); 
     }
     if (body.gcratio === "true") {
+      console.log("in gcratio is true, what is gcat array?: ", gcat);
       if (gcat.length === 0) {
         gc = calc_gc(first); 
+        console.log("gc: ", gc);
       }
       else {
         gc = (gcat[1] + gcat[2]) / length(first) * 100; 
@@ -47,17 +49,20 @@ function uploadFiles(req, res) {
     }
     if (body.compl === "true") {
       compl = complement(first); 
+      console.log("complement: ", compl);
     }
     if (body.rev === "true") {
       rev = reverse(first);
+      console.log("reverse: ", rev); 
     }
     if (body.revcompl === "true") {
       revcompl = reverse(complement(first)); 
+      console.log("rev complement", revcompl);
     }
     if (body.prot === "true") {
       const THREE = 3; 
-      const LABELS = ["5'3' Frame 1:", "5'3' Frame 2:", "5'3' Frame 3:", 
-                    "3'5' Frame 1:", "3'5' Frame 2:", "3'5' Frame 3:"];
+      const LABELS = ["5'3' Frame 1", "5'3' Frame 2", "5'3' Frame 3", 
+                    "3'5' Frame 1", "3'5' Frame 2", "3'5' Frame 3"];
       let labs = LABELS.slice(0, body.protFrames);
       let values = []; 
       if (body.protFrames <= THREE) {
@@ -75,7 +80,7 @@ function uploadFiles(req, res) {
     }
     let returnObj = {
       seq: first, 
-      name: seqName, 
+      name: firstName, 
       len: len, 
       gc: gc, 
       gcat: gcat, 
@@ -84,11 +89,7 @@ function uploadFiles(req, res) {
       revcompl: revcompl, 
       prot: prot
     }
-    to_return.push(returnObj);
-    });
-    
-    // res.status(200).json(returnObj);
-    res.status(200).json(to_return);
+    res.status(200).json(returnObj);
   })  
 } 
 app.listen(5000, () => {
@@ -101,6 +102,10 @@ function reverse(seq) {
 }
 
 function length(seq) {
+  console.log(seq); 
+  console.log(seq.length); 
+  console.log(seq[1]); 
+  console.log(seq[seq.length - 1]);
   return seq.length;
 }
 
@@ -135,6 +140,7 @@ function freq(seq) {
     else if (ch == 'T')
       t += 1; 
   }
+  console.log("g+c is: ", g + c);
   return [a, c, g, t];
 }
 
@@ -146,10 +152,12 @@ function calc_gc(seq) {
     if (ch == 'C' || ch == 'G') 
       count += 1; 
   }
+  console.log(count);
   return (count / len); 
 }
 
 function aminoAcid(seq, frames) {
+  console.log(seq);
   seq = seq.replace(/T/g, 'U');
   let aa = {
     "UUU": "F", "UUC": "F", "UUA": "L", "UUG": "L", 
@@ -186,5 +194,13 @@ function aminoAcid(seq, frames) {
       }
     }
   }
+  console.log(proteins);
   return proteins; 
 }
+
+      // Access individual sequences
+      // sequences.forEach(sequence => {
+      //   console.log(`Header: ${sequence.id}`);
+      //   console.log(`Sequence: ${sequence.seq}`);
+      // });
+

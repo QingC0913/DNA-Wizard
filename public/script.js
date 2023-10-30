@@ -22,7 +22,6 @@ function hiddenInput() {
         $("#hidden-input").css('visibility', 'hidden');
     }
 }
-
 function submitForm(e) {
     e.preventDefault();
     const file = $("#file"); 
@@ -76,50 +75,57 @@ function sendFile(formData) {
 }
 
 function handleData(data) {
-    console.log(data); 
-    let div = `<div class = 'space'>`; 
-    div += `<p>> ${data.name} </span></p>`
-    div += `<p><span class='key'>Sequence:</span>
-                <span class = 'value'> ${data.seq} </span></p>`
-    if (data.len) {
-        console.log("data.len is not null"); 
-        console.log(data.len);
-        div += `<p><span class = 'key'>Length:</span>
-        <span class = 'value'> ${data.len}</span></p>`;
-    }
-    if (data.gc) {
-        div += `<p><span class = 'key'>GC Ratio:</span>
-        <span class = 'value'> ${data.gc}</span></p>`;
-    }
-    if (data.gcat.length > 0) {
-        div += `<p><span class = 'key'>Nucleotide Frequency:</span>
-        <span class = 'value'>`; 
-        labels = ['A', 'C', 'G', 'T']; 
-        for (let i = 0; i < labels.length; i++) {
-            div += `<span class = acgt>${labels[i]}: </span>${data.gcat[i]}&nbsp;&nbsp;&nbsp;`; 
+    let div = "";
+    let i = 0; 
+    data.forEach(seq => {
+        i += 1; 
+        div += (i % 2 === 0) ? "<div class = 'space'>" : "<div class = 'space2'>"; 
+        console.log(seq);
+        div += `<p>> ${seq.name} </span></p>`
+        div += `<p><span class='key'>Sequence:</span>
+                    <span class = 'value'> ${seq.seq} </span></p>`
+        if (seq.len) {
+            console.log("seq.len is not null"); 
+            console.log(seq.len);
+            div += `<p><span class = 'key'>Length:</span>
+            <span class = 'value'> ${seq.len}</span></p>`;
         }
-        div += `</span></p>`;
-    }
-    if (data.compl) {
-        div += `<p><span class = 'key'>Complement:</span>
-        <span class = 'value'> ${data.compl}</span></p>`;
-    }
-    if (data.rev) {
-        div += `<p><span class = 'key'>Reverse:</span>
-        <span class = 'value'>${data.rev}</span></p>`;
-    }
-    if (data.revcompl) {
-        div += `<p><span class = 'key'>Reverse Complement:</span>
-        <span class = 'value'> ${data.revcompl}</span></p>`;
-    }
-    if (data.prot) {
-        let aa = Object.entries(data.prot)
-        .map(([key, value]) => `<div><span class = 'black'>${key}</span> ${value}</div>`)
-        .join('');
-
-        div += `<div><span class = 'key'>Amino Acid Seq:</span>
-        <span class = 'value'> ${aa}</span></div>`;
-    }
-    div += "</div>"
+        if (seq.gc) {
+            div += `<p><span class = 'key'>GC Ratio:</span>
+            <span class = 'value'> ${seq.gc}</span></p>`;
+        }
+        if (seq.gcat.length > 0) {
+            div += `<p><span class = 'key'>Nucleotide Frequency:</span>
+            <span class = 'value'>`; 
+            labels = ['A', 'C', 'G', 'T']; 
+            for (let i = 0; i < labels.length; i++) {
+                div += `<span class = acgt>${labels[i]}: </span>${seq.gcat[i]}&nbsp;&nbsp;&nbsp;`; 
+            }
+            div += `</span></p>`;
+        }
+        if (seq.compl) {
+            div += `<p><span class = 'key'>Complement:</span>
+            <span class = 'value'> ${seq.compl}</span></p>`;
+        }
+        if (seq.rev) {
+            div += `<p><span class = 'key'>Reverse:</span>
+            <span class = 'value'>${seq.rev}</span></p>`;
+        }
+        if (seq.revcompl) {
+            div += `<p><span class = 'key'>Reverse Complement:</span>
+            <span class = 'value'> ${seq.revcompl}</span></p>`;
+        }
+        if (seq.prot) {
+            let aa = Object.entries(seq.prot)
+            .map(([key, value]) => `<div><span class = 'black'>${key}</span> ${value}</div>`)
+            .join('');
+    
+            div += `<div><span class = 'key'>Amino Acid Seq:</span>
+            <span class = 'value'> ${aa}</span></div>`;
+        }
+        div += "</div>"
+    });
+    div = div.replaceAll('-', "<span class = 'red'>-</span>"); 
+    div = div.replaceAll('M', "<span class = 'black'>M</span>"); 
     $("#box4").html(div); 
 }
