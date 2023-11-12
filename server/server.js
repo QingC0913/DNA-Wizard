@@ -15,7 +15,7 @@ app.post("/upload_file", upload.single("file"), uploadFiles);
 
 function uploadFiles(req, res) {
   const body = req.body
-  console.log("body:", body);
+  // console.log("body:", body);
   let fasta_file = req.file;
   fs.readFile(fasta_file.path, 'utf8', (err, data) => {
     if (err) {
@@ -25,68 +25,71 @@ function uploadFiles(req, res) {
     // Parse the FASTA content using biojs-io-fasta
     const sequences = Fasta.parse(data);
     let to_return = []; 
+    console.log(sequences.length); 
     sequences.forEach(sequence => {
-    let first = sequence.seq.toUpperCase().trim(); 
-    let seqName = sequence.name; 
-    let len = null, gcat = [], gc = null, compl = null, rev = null,
-        revcompl = null, prot = null; 
-    if (body.len === "true") {
-      len = length(first); 
-    }
-    if (body.nfreq === "true") {
-      gcat = freq(first);
-    }
-    if (body.gcratio === "true") {
-      if (gcat.length === 0) {
-        gc = calc_gc(first); 
+      console.log(sequence);
+      let first = sequence.seq.toUpperCase().trim(); 
+      let seqName = sequence.name; 
+      let len = null, gcat = [], gc = null, compl = null, rev = null,
+          revcompl = null, prot = null; 
+      if (body.len === "true") {
+        len = length(first); 
       }
-      else {
-        gc = (gcat[1] + gcat[2]) / length(first) * 100; 
-        gc = gc.toFixed(2) + '%';
+      if (body.nfreq === "true") {
+        gcat = freq(first);
       }
-    }
-    if (body.compl === "true") {
-      compl = complement(first); 
-    }
-    if (body.rev === "true") {
-      rev = reverse(first);
-    }
-    if (body.revcompl === "true") {
-      revcompl = reverse(complement(first)); 
-    }
-    if (body.prot === "true") {
-      const THREE = 3; 
-      const LABELS = ["5'3' Frame 1:", "5'3' Frame 2:", "5'3' Frame 3:", 
-                    "3'5' Frame 1:", "3'5' Frame 2:", "3'5' Frame 3:"];
-      let labs = LABELS.slice(0, body.protFrames);
-      let values = []; 
-      if (body.protFrames <= THREE) {
-        values = aminoAcid(first, body.protFrames); 
+      if (body.gcratio === "true") {
+        if (gcat.length === 0) {
+          gc = calc_gc(first); 
+        }
+        else {
+          gc = (gcat[1] + gcat[2]) / length(first) * 100; 
+          gc = gc.toFixed(2) + '%';
+        }
       }
-      else {
-        let a = aminoAcid(first, THREE); 
-        let b = aminoAcid(reverse(first), THREE);
-        values = a.concat(b);
+      if (body.compl === "true") {
+        compl = complement(first); 
       }
-      prot = labs.reduce((acc, key, index) => {
-        acc[key] = values[index];
-        return acc;
-      }, {});
-    }
-    let returnObj = {
-      seq: first, 
-      name: seqName, 
-      len: len, 
-      gc: gc, 
-      gcat: gcat, 
-      compl: compl, 
-      rev: rev, 
-      revcompl: revcompl, 
-      prot: prot
-    }
-    to_return.push(returnObj);
+      if (body.rev === "true") {
+        rev = reverse(first);
+      }
+      if (body.revcompl === "true") {
+        revcompl = reverse(complement(first)); 
+      }
+      if (body.prot === "true") {
+        const THREE = 3; 
+        const LABELS = ["5'3' Frame 1:", "5'3' Frame 2:", "5'3' Frame 3:", 
+                      "3'5' Frame 1:", "3'5' Frame 2:", "3'5' Frame 3:"];
+        let labs = LABELS.slice(0, body.protFrames);
+        let values = []; 
+        if (body.protFrames <= THREE) {
+          values = aminoAcid(first, body.protFrames); 
+        }
+        else {
+          let a = aminoAcid(first, THREE); 
+          let b = aminoAcid(reverse(first), THREE);
+          values = a.concat(b);
+        }
+        prot = labs.reduce((acc, key, index) => {
+          acc[key] = values[index];
+          return acc;
+        }, {});
+      }
+      let returnObj = {
+        seq: first, 
+        name: seqName, 
+        len: len, 
+        gc: gc, 
+        gcat: gcat, 
+        compl: compl, 
+        rev: rev, 
+        revcompl: revcompl, 
+        prot: prot
+      }
+      to_return.push(returnObj);
+      console.log(to_return);
     });
-    
+    console.log(typeof to_return);
     // res.status(200).json(returnObj);
     res.status(200).json(to_return);
   })  

@@ -1,5 +1,5 @@
 html {
-  min-width: 300px; 
+  min-width: 345px; 
   max-width: 100%;
 }
 body {
@@ -21,6 +21,8 @@ header {
   position: fixed;
   top: 0;
   text-align: center;
+  box-shadow: 0 3px 5px rgba(15, 26, 0, 0.5); 
+  border-radius: 0 0 10px 10px;
 }
 h1 {
   grid-area: h1;
@@ -108,7 +110,7 @@ input[type="file"] {
 }
 
 /* Style the button when hovering over it */
-.custom-file-upload:hover {
+.custom-file-upload:hover, button:hover {
   background-color: #104911;
 }
 
@@ -122,6 +124,7 @@ button, label[for="file"] {
   border-radius: 8px;
   cursor: pointer;
   margin-bottom: 1em;
+  box-shadow: 0 2px 1px rgba(15, 26, 0, 0.3); 
 }
 
 /* buttons */
