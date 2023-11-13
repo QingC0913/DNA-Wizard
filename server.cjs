@@ -1,18 +1,18 @@
-import fs from 'fs';
-import Fasta from 'biojs-io-fasta';
-import express from 'express'; 
-import multer from 'multer'; 
-import cors from "cors"; 
+var express = require("express"); 
+var path = require("path");
+var multer = require("multer"); 
+var cors = require("cors"); 
+var Fasta = require("biojs-io-fasta");
+var fs = require("fs"); 
 
 const app = express();
+const port = 5000;
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const upload = multer({ dest: "uploads/" });
-
 app.post("/upload_file", upload.single("file"), uploadFiles);
-
 function uploadFiles(req, res) {
   const body = req.body
   // console.log("body:", body);
@@ -94,9 +94,22 @@ function uploadFiles(req, res) {
     res.status(200).json(to_return);
   })  
 } 
-app.listen(5000, () => {
-    console.log(`✨🌟 Server started...🌟✨`);
+
+// Serve static files from the public directory
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Handle POST request at "/upload_file"
+
+// Serve index.html as the homepage
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
+
+// Start the server
+app.listen(port, () => {
+  console.log(`✨🌟 Server started at http://localhost:${port}🌟✨`);
+});
+
 
 function reverse(seq) {
   const reversed = [...seq].reverse().join("");
