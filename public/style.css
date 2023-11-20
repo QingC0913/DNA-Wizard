@@ -73,9 +73,8 @@ h2 {
 }
 
 .space, .space2 {
-  /* border: 1px solid black; */
   border-radius: 25px;
-  padding: 1em;
+  padding: 1.5em;
   margin-bottom: 1em;
   background-color: #A8D5E2;
 }
@@ -87,15 +86,15 @@ h2 {
   font-size: 18px;
   font-weight: bold;
 }
-.value {
+.white {
   color: white;
 }
 .black {
   color: black;
 }
-.acgt {
+/* .acgt {
   color: orange;
-}
+} */
 
 #hidden-input {
   visibility: hidden;

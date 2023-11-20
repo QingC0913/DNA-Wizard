@@ -25,9 +25,7 @@ function uploadFiles(req, res) {
     // Parse the FASTA content using biojs-io-fasta
     const sequences = Fasta.parse(data);
     let to_return = []; 
-    console.log(sequences.length); 
     sequences.forEach(sequence => {
-      console.log(sequence);
       let first = sequence.seq.toUpperCase().trim(); 
       let seqName = sequence.name; 
       let len = null, gcat = [], gc = null, compl = null, rev = null,
@@ -89,8 +87,6 @@ function uploadFiles(req, res) {
       to_return.push(returnObj);
       console.log(to_return);
     });
-    console.log(typeof to_return);
-    // res.status(200).json(returnObj);
     res.status(200).json(to_return);
   })  
 } 

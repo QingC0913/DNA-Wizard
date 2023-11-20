@@ -47,7 +47,7 @@ function submitForm(e) {
         }
     } else {
         $("#upload-text").html(
-            "<span class='red'>No file selected! </span><span class = 'value'>" + uploadText);      
+            "<span class='red'>No file selected! </span><div class = 'value'>" + uploadText + "</div>");      
     }
 }
 function isValidFASTA(fasta) {
@@ -62,7 +62,7 @@ function sendFile(formData) {
         method: 'POST',
         body: formData,
     }).then((res) => {
-        console.log(res)
+        // console.log(res)
         if (!res.ok) {
             throw new Error(`HTTP error! Status: ${res.status}`);
         }
@@ -80,13 +80,13 @@ function handleData(data) {
     data.forEach(seq => {
         i += 1; 
         div += (i % 2 === 0) ? "<div class = 'space'>" : "<div class = 'space2'>"; 
-        console.log(seq);
+        // console.log(seq);
         div += `<p>> ${seq.name} </span></p>`
         div += `<p><span class='key'>Sequence:</span>
                     <span class = 'value'> ${seq.seq} </span></p>`
         if (seq.len) {
-            console.log("seq.len is not null"); 
-            console.log(seq.len);
+            // console.log("seq.len is not null"); 
+            // console.log(seq.len);
             div += `<p><span class = 'key'>Length:</span>
             <span class = 'value'> ${seq.len}</span></p>`;
         }
@@ -125,7 +125,7 @@ function handleData(data) {
         }
         div += "</div>"
     });
-    div = div.replaceAll('-', "<span class = 'red'>-</span>"); 
+    div = div.replaceAll('-', "<span class = 'white'>-</span>"); 
     div = div.replaceAll('M', "<span class = 'black'>M</span>"); 
     $("#box4").html(div); 
 }
