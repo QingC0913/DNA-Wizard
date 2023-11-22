@@ -1,18 +1,20 @@
 html {
-  min-width: 345px; 
+  min-width: 400px; 
   max-width: 100%;
+  font-family: Roboto;
 }
 body {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: 1fr 0.25fr 0.25fr 0.25fr 3fr auto auto;
+  grid-template-rows: 1fr 0.2fr 0.5fr 0.2fr auto auto auto;
   margin: 0 auto;
-  background-color: #ffd449;
+  background-color: #FFFADD;
+  overflow-x: hidden;
 }
 /* header */
 header {
   width: 100%;
-  background-color: #548c2f;
+  background-color: #FFCC70;
   padding: 0.5em;
   grid-column: 1 / span 5;
   display: grid;
@@ -25,14 +27,12 @@ header {
   border-radius: 0 0 10px 10px;
 }
 h1 {
-  grid-area: h1;
-  /* background-image: linear-gradient(to left, #553c9a, #b393d3); */
-  
+  grid-area: h1;  
+  font-family: 'Montserrat', sans-serif;
 }
 h2 {
   grid-area: h2;
-  /* gradient */
-  background-image: linear-gradient(to right, #FF6D60 40%, #F7D060);
+  background-image: linear-gradient(to right, #548eec 40%, #B388FF);
   color: transparent;
   background-clip: text;
   -webkit-background-clip: text;
@@ -44,7 +44,7 @@ h2 {
 #box2 {
   grid-row: 3 / 4;
   font-size: 1.5em;
-  font-weight: bold;
+  text-align: center;
 }
 #box3 {
   grid-row: 5 / 6;
@@ -56,48 +56,58 @@ h2 {
 }
 #box5 {
   grid-row: 7 / 8; 
-  grid-column: 5 / 6;
+  grid-column: 3 / 4;
 }
-
 #box5 a {
   text-decoration: none;
-  color: white;
+  font-size: 16px;
+}
+#box5 a:active { 
+  color: black;
 }
 /* upload box */
 #uploadBox {
   border: 3px dotted black;
-  padding: 2em;
+  padding: 1.5em;
   padding-bottom: 1em;
   margin-bottom: 1em;
   border-radius: 25px;
 }
-
 .space, .space2 {
   border-radius: 25px;
   padding: 1.5em;
   margin-bottom: 1em;
-  background-color: #A8D5E2;
+  background-color: #a886e3;
+  box-shadow: 0 2px 1px rgba(15, 26, 0, 0.3); 
 }
 .space2 {
-  background-color: #F9a620;
+  background-color: #6daded;
+  color: black; 
 }
-
 .key {
-  font-size: 18px;
   font-weight: bold;
 }
-.white {
-  color: white;
+ol {
+  margin: .5em auto; /* Center the container horizontally */
+  text-align: left; 
 }
-.black {
-  color: black;
+ li {
+  font-size: 12px;
+  text-align: left;
+ }
+.red {
+  color: red;
 }
-/* .acgt {
-  color: orange;
-} */
-
-#hidden-input {
+.bolder {
+  font-weight: bolder;
+}
+.hidden-input {
   visibility: hidden;
+}
+/* buttons */
+button {
+  margin-top: 1em;
+  border: none;
 }
 /* file button */
 input[type="file"] {
@@ -106,32 +116,53 @@ input[type="file"] {
 /* Style the custom button to look like the "Choose File" button */
 .custom-file-upload {
   cursor: pointer;
+  font-weight: 400;
 }
-
 /* Style the button when hovering over it */
 .custom-file-upload:hover, button:hover {
-  background-color: #104911;
+  background-color: #e4990e;
 }
-
-
 /* Style the file input's label to resemble a button */
 button, label[for="file"] {
   display: inline-block;
-  padding: 1em 2em;
-  background-color: #548c2f;
-  color: white;
+  padding: .8em 1.5em;
+  background-color: #FFCC70;
   border-radius: 8px;
+  margin-bottom: 16px;
   cursor: pointer;
-  margin-bottom: 1em;
   box-shadow: 0 2px 1px rgba(15, 26, 0, 0.3); 
+  font-weight: 400;
+  font-family: Roboto;
+  font-size: 16px;
 }
 
-/* buttons */
-button {
-  margin-top: 1em;
-  border: none;
-}
-
-.red {
-  color: red;
+@media screen and (max-width: 600px) {
+  body {
+    grid-template-rows: 0.5fr 0.2fr 1fr 0.1fr auto auto auto;
+    overflow-x: hidden;
+  }
+  h1 {
+    font-size: 1.5em;
+  }
+  h2 {
+    font-size: 1.3em;
+  }
+  #upload-box {
+    padding: 0.5em;
+  }
+  button, label[for="file"], #form {
+    font-size: 12px;
+    margin-bottom: 12px;
+  }
+  #box2 {
+    font-size: 16px;
+  }
+  .space, .space2, #box5 a {
+    font-size: 12px;
+  }
+  #box5 {
+    text-align: center;
+    grid-column: 2 / 5;
+  }
+  
 }

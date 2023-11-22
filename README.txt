@@ -6,3 +6,5 @@ jQuery
     https://api.jquery.com/change/ 
 random DNA sequences 
     https://www.bioinformatics.org/sms2/random_dna.html? 
+color accessibility guide
+    https://www.accessibilitychecker.org/color-contrast-checker/ 
