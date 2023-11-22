@@ -1,5 +1,6 @@
 const form = document.getElementById("form");
 const FASTA = "fasta";
+let file = $("#file");
 form.addEventListener("submit", submitForm);
 const uploadText = "Upload a FASTA file to begin extracting features from your sequence"; 
 
@@ -12,15 +13,21 @@ $("#all").on("change", function() {
 $("#prot").on("change", hiddenInput); 
 function hiddenInput() {
     if ($("#prot").is(':checked')) {
-        $(".hidden-input").css('visibility', 'visible');
+        $("div.hidden-input").css('visibility', 'visible');
     }
     else {
-        $(".hidden-input").css('visibility', 'hidden');
+        $("div.hidden-input").css('visibility', 'hidden');
     }
 }
+
+file.on("change", function() {
+    const fasta =  file.prop('files')[0]; 
+    $("#upload-text").html(fasta.name);
+    // file = $("#file");
+});
+
 function submitForm(e) {
     e.preventDefault();
-    const file = $("#file"); 
 
     const formData = new FormData();
     $('.opt').each(function(obj) {
@@ -37,7 +44,6 @@ function submitForm(e) {
         const fasta =  file.prop('files')[0]; 
         if (isValidFASTA(fasta)) {
             formData.append("file", fasta);
-            $("#upload-text").html(fasta.name);
             sendFile(formData); 
         }
         else {      
@@ -48,6 +54,7 @@ function submitForm(e) {
             "<span class='red'>No file selected! </span>");      
     }
 }
+
 function isValidFASTA(fasta) {
     console.log(fasta.name.toLowerCase());
     const extension = fasta.name.split('.');
@@ -121,4 +128,5 @@ function handleData(data) {
         div += "</div>"
     });
     $("#box4").html(div); 
+    $("button.hidden-input").css('visibility', 'visible');
 }

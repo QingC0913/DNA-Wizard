@@ -6,7 +6,6 @@ html {
 body {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  /* grid-template-rows: 1fr 0.25fr 0.25fr 0.25fr 3fr auto auto; */
   grid-template-rows: 1fr 0.2fr 0.5fr 0.2fr auto auto auto;
   margin: 0 auto;
   background-color: #FFFADD;
@@ -31,11 +30,8 @@ h1 {
   grid-area: h1;  
   font-family: 'Montserrat', sans-serif;
 }
-
 h2 {
   grid-area: h2;
-  /* gradient */
-  /* background-image: linear-gradient(to right, #FF6D60 40%, #F7D060); */
   background-image: linear-gradient(to right, #548eec 40%, #B388FF);
   color: transparent;
   background-clip: text;
@@ -49,7 +45,6 @@ h2 {
   grid-row: 3 / 4;
   font-size: 1.5em;
   text-align: center;
-  /* font-weight: bold; */
 }
 #box3 {
   grid-row: 5 / 6;
@@ -61,14 +56,12 @@ h2 {
 }
 #box5 {
   grid-row: 7 / 8; 
-  grid-column: 5 / 7;
+  grid-column: 3 / 4;
 }
-
 #box5 a {
   text-decoration: none;
   font-size: 16px;
 }
-
 #box5 a:active { 
   color: black;
 }
@@ -80,7 +73,6 @@ h2 {
   margin-bottom: 1em;
   border-radius: 25px;
 }
-
 .space, .space2 {
   border-radius: 25px;
   padding: 1em;
@@ -92,13 +84,10 @@ h2 {
   background-color: #6daded;
   color: black; 
 }
-
 .key {
-  /* font-size: 18px; */
   font-weight: bold;
 }
 ol {
-  /* width: 75%; Set the width of the container */
   margin: .5em auto; /* Center the container horizontally */
   text-align: left; 
 }
@@ -106,25 +95,20 @@ ol {
   font-size: 12px;
   text-align: left;
  }
-
 .red {
   color: red;
 }
-
 .bolder {
   font-weight: bolder;
 }
-
 .hidden-input {
   visibility: hidden;
 }
-
 /* buttons */
 button {
   margin-top: 1em;
   border: none;
 }
-
 /* file button */
 input[type="file"] {
   display: none; 
@@ -134,12 +118,10 @@ input[type="file"] {
   cursor: pointer;
   font-weight: 400;
 }
-
 /* Style the button when hovering over it */
 .custom-file-upload:hover, button:hover {
   background-color: #e4990e;
 }
-
 /* Style the file input's label to resemble a button */
 button, label[for="file"] {
   display: inline-block;
@@ -152,4 +134,35 @@ button, label[for="file"] {
   font-weight: 400;
   font-family: Roboto;
   font-size: 16px;
+}
+
+@media screen and (max-width: 600px) {
+  body {
+    grid-template-rows: 0.5fr 0.2fr 1fr 0.1fr auto auto auto;
+    overflow-x: hidden;
+  }
+  h1 {
+    font-size: 1.5em;
+  }
+  h2 {
+    font-size: 1.3em;
+  }
+  #upload-box {
+    padding: 0.5em;
+  }
+  button, label[for="file"], #form {
+    font-size: 12px;
+    margin-bottom: 12px;
+  }
+  #box2 {
+    font-size: 16px;
+  }
+  .space, .space2, #box5 a {
+    font-size: 12px;
+  }
+  #box5 {
+    text-align: center;
+    grid-column: 2 / 5;
+  }
+  
 }
