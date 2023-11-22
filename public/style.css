@@ -138,7 +138,7 @@ button, label[for="file"] {
 
 @media screen and (max-width: 600px) {
   body {
-    grid-template-rows: 0.5fr 0.2fr 1fr 0.1fr auto auto auto;
+    grid-template-rows: 0.5fr 0.4fr 1fr 0.1fr auto auto auto;
     overflow-x: hidden;
   }
   h1 {
