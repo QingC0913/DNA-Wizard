@@ -56,7 +56,6 @@ function submitForm(e) {
 }
 
 function isValidFASTA(fasta) {
-    console.log(fasta.name.toLowerCase());
     const extension = fasta.name.split('.');
     return extension[extension.length - 1] === FASTA; 
 }
@@ -69,7 +68,6 @@ function sendFile(formData) {
         if (!res.ok) {
             throw new Error(`HTTP error! Status: ${res.status}`);
         }
-        console.log("response is ok!");
         return res.json();
     }).then(handleData)
     .catch((err) => {
@@ -83,7 +81,6 @@ function handleData(data) {
     data.forEach(seq => {
         i += 1; 
         div += (i % 2 === 0) ? "<div class = 'space'>" : "<div class = 'space2'>"; 
-        // console.log(seq);
         div += `<p>> ${seq.name} </span></p>`
         div += `<p><span class='key'>Sequence ${seq.index}:</span>
                     <span class = 'value'> ${seq.seq} </span></p>`

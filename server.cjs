@@ -87,7 +87,6 @@ function uploadFiles(req, res) {
       }
       index += 1; 
       to_return.push(returnObj);
-      // console.log(to_return);
     });
     res.status(200).json(to_return);
   })  

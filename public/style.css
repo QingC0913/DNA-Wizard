@@ -88,7 +88,6 @@ h2 {
 }
 ol {
   margin: .5em auto; /* Center the container horizontally */
-  /* text-align: left;  */
   text-align: center;
   list-style-position: inside; 
 }
