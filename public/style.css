@@ -37,14 +37,13 @@ h2 {
   background-clip: text;
   -webkit-background-clip: text;
 }
-#box2, #box3, #box4 {
+#box2, #box3, #box4, #box5 {
   grid-column: 2 / span 3;
   text-align: center;
 }
 #box2 {
   grid-row: 3 / 4;
   font-size: 1.5em;
-  text-align: center;
 }
 #box3 {
   grid-row: 5 / 6;
@@ -57,7 +56,6 @@ h2 {
 #box5 {
   grid-row: 7 / 8; 
   grid-column: 3 / 4;
-  text-align: center;
 }
 #box5 a {
   text-decoration: none;
@@ -90,7 +88,9 @@ h2 {
 }
 ol {
   margin: .5em auto; /* Center the container horizontally */
-  text-align: left; 
+  /* text-align: left;  */
+  text-align: center;
+  list-style-position: inside; 
 }
  li {
   font-size: 12px;

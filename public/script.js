@@ -66,7 +66,6 @@ function sendFile(formData) {
         method: 'POST',
         body: formData,
     }).then((res) => {
-        // console.log(res)
         if (!res.ok) {
             throw new Error(`HTTP error! Status: ${res.status}`);
         }
