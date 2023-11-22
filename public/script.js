@@ -2,7 +2,6 @@ const form = document.getElementById("form");
 const FASTA = "fasta";
 form.addEventListener("submit", submitForm);
 const uploadText = "Upload a FASTA file to begin extracting features from your sequence"; 
-let proteinFrames = $("input[name='frames']:checked").val();
 
 $("#all").on("change", function() {
     let boxes = $("input[type='checkbox']");
@@ -13,13 +12,10 @@ $("#all").on("change", function() {
 $("#prot").on("change", hiddenInput); 
 function hiddenInput() {
     if ($("#prot").is(':checked')) {
-        $("#hidden-input").css('visibility', 'visible');
-        $('input[name="frames"]').change(function() {
-            proteinFrames = $("input[name='frames']:checked").val();
-        });
+        $(".hidden-input").css('visibility', 'visible');
     }
     else {
-        $("#hidden-input").css('visibility', 'hidden');
+        $(".hidden-input").css('visibility', 'hidden');
     }
 }
 function submitForm(e) {
@@ -27,13 +23,15 @@ function submitForm(e) {
     const file = $("#file"); 
 
     const formData = new FormData();
-
     $('.opt').each(function(obj) {
         const value = $(this).val();
         const checked = $(this).is(':checked');
         formData.append(value, checked);
     });
+    let proteinFrames = $("input[name='frames']:checked").val();
+    let proteinStyles = $("input[name='styles']:checked").val();    
     formData.append('protFrames', proteinFrames);
+    formData.append('protStyles', proteinStyles);
 
     if (file.val() != "") {
         const fasta =  file.prop('files')[0]; 
@@ -43,11 +41,11 @@ function submitForm(e) {
             sendFile(formData); 
         }
         else {      
-            $("#upload-text").html("<div class='red'>Uploaded file does not have .fasta extension! </div>" + uploadText);           
+            $("#upload-text").html("<div class='red'>Uploaded file does not have .fasta extension! </div>");           
         }
     } else {
         $("#upload-text").html(
-            "<span class='red'>No file selected! </span><span class = 'value'>" + uploadText);      
+            "<span class='red'>No file selected! </span>");      
     }
 }
 function isValidFASTA(fasta) {
@@ -58,7 +56,6 @@ function isValidFASTA(fasta) {
 
 function sendFile(formData) {
     fetch("http://localhost:5000/upload_file", {
-        // mode: 'no-cors',
         method: 'POST',
         body: formData,
     }).then((res) => {
@@ -80,13 +77,11 @@ function handleData(data) {
     data.forEach(seq => {
         i += 1; 
         div += (i % 2 === 0) ? "<div class = 'space'>" : "<div class = 'space2'>"; 
-        console.log(seq);
+        // console.log(seq);
         div += `<p>> ${seq.name} </span></p>`
-        div += `<p><span class='key'>Sequence:</span>
+        div += `<p><span class='key'>Sequence ${seq.index}:</span>
                     <span class = 'value'> ${seq.seq} </span></p>`
         if (seq.len) {
-            console.log("seq.len is not null"); 
-            console.log(seq.len);
             div += `<p><span class = 'key'>Length:</span>
             <span class = 'value'> ${seq.len}</span></p>`;
         }
@@ -99,7 +94,7 @@ function handleData(data) {
             <span class = 'value'>`; 
             labels = ['A', 'C', 'G', 'T']; 
             for (let i = 0; i < labels.length; i++) {
-                div += `<span class = acgt>${labels[i]}: </span>${seq.gcat[i]}&nbsp;&nbsp;&nbsp;`; 
+                div += `<span>${labels[i]}: </span>${seq.gcat[i]}&nbsp;&nbsp;&nbsp;`; 
             }
             div += `</span></p>`;
         }
@@ -117,7 +112,7 @@ function handleData(data) {
         }
         if (seq.prot) {
             let aa = Object.entries(seq.prot)
-            .map(([key, value]) => `<div><span class = 'black'>${key}</span> ${value}</div>`)
+            .map(([key, value]) => `<div>${key}${value}</div>`)
             .join('');
     
             div += `<div><span class = 'key'>Amino Acid Seq:</span>
@@ -125,7 +120,5 @@ function handleData(data) {
         }
         div += "</div>"
     });
-    div = div.replaceAll('-', "<span class = 'red'>-</span>"); 
-    div = div.replaceAll('M', "<span class = 'black'>M</span>"); 
     $("#box4").html(div); 
 }
