@@ -6,7 +6,7 @@ var Fasta = require("biojs-io-fasta");
 var fs = require("fs"); 
 
 const app = express();
-const port = 5000;
+// const port = 5000;
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -101,9 +101,13 @@ app.get('/', (req, res) => {
 });
 
 // Start the server
-app.listen(port, () => {
-  console.log(`✨🌟 Server started at http://localhost:${port}🌟✨`);
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`✨🌟Server is running on http://localhost:${PORT}🌟✨`);
 });
+// app.listen(port, () => {
+//   console.log(`✨🌟 Server started at http://localhost:${port}🌟✨`);
+// });
 
 function reverse(seq) {
   const reversed = [...seq].reverse().join("");
@@ -192,7 +196,7 @@ function aminoAcid(seq, frames, style) {
       "CAU": "His ", "CAC": "His ", "CAA": "Gln ", "CAG": "Gln ",
       "CGU": "Arg ", "CGC": "Arg ", "CGA": "Arg ", "CGG": "Arg ",
       "AUU": "Ile ", "AUC": "Ile ", "AUA": "Ile ", "AUG": "Met ",
-      "ACU": "Thr ", "ACC": "Thr ", "ACA": "Thr", "ACG": "Thr",
+      "ACU": "Thr ", "ACC": "Thr ", "ACA": "Thr ", "ACG": "Thr ",
       "AAU": "Asn ", "AAC": "Asn ", "AAA": "Lys ", "AAG": "Lys ",
       "AGU": "Ser ", "AGC": "Ser ", "AGA": "Arg ", "AGG": "Arg ",
       "GUU": "Val ", "GUC": "Val ", "GUA": "Val ", "GUG": "Val ",
