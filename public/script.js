@@ -61,7 +61,9 @@ function isValidFASTA(fasta) {
 }
 
 function sendFile(formData) {
-    fetch("http://localhost:5000/upload_file", {
+    const vercelURL = "https://dna-wizard-gwc.vercel.app/"; 
+    // fetch("http://localhost:5000/upload_file", {
+    fetch(`${vercelURL}/upload_file`, {
         method: 'POST',
         body: formData,
     }).then((res) => {
