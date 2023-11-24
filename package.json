@@ -5,8 +5,8 @@
   "main": "public/server.js",
   "type": "module",
   "scripts": {
-    "start": "node server.cjs"
-},
+    "start": "node server.js"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
