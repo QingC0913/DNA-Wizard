@@ -13,9 +13,12 @@ console.log(__dirname);
 const app = express();
 app.use(express.static(path.join(__dirname, 'public')));
 
+// app.get('/', (req, res) => {
+//   res.sendFile(__dirname + '/index.html');
+// });
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/index.html');
-});
+  res.send(html);
+})
 
 // Multer middleware for file upload
 const upload = multer({ dest: 'uploads/' });
@@ -223,3 +226,124 @@ function aminoAcid(seq, frames, style) {
   return proteins; 
 }
 
+let html = ` <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DNA Wizard</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <h1>DNA Wizard</h1>
+    <h2>DNA Features Extraction Tool</h2>
+  </header>
+  <div id = "box2">
+    <span class = "bolder">Using the DNA Features Extraction Tool</span>
+    <ol>
+      <li> 
+        <span class = "bolder">Upload Sequence:</span> 
+        Click on "Choose File" to select and upload a DNA FASTA file from your computer
+      </li>
+      <li>
+        <span class = "bolder">Select Features: </span>
+        Choose the features you would like to extract from the uploaded sequence(s)</li>
+      <li>
+        <span class = "bolder">Extract Features: </span>
+        After selecting features, click on "Upload and Extract" to initiate the analysis process</li>
+      <li> 
+        <span class = "bolder"> View Results: </span>
+        Once the analysis is complete, the extracted features will be displayed below</li>
+    </ol>
+  </div>
+  <div id = "box3">
+    <form id='form'>
+      <div id = "uploadBox"> 
+        <div class="input-group">
+            <input id='file' type="file">
+            <label for="file" class="custom-file-upload">Choose File</label>
+        </div>
+        <div id = "upload-text" class = "bolder">
+          No file selected
+        </div>
+      </div>
+        <div class="input-group">
+          <label for='len'>
+            <input id="len" name="len" value="len" class="opt" type="checkbox">
+            Length
+          </label>
+          <label for='gcratio'>
+            <input id="gcratio" name="gcratio" value="gcratio" class="opt" type="checkbox">
+            GC Ratio
+          </label>
+          <label for='nfreq'>
+            <input id="nfreq" name="nfreq" value="nfreq" class="opt" type="checkbox">
+            Nucleotide Frequency
+          </label>
+          <br>
+          <label for='compl'>
+            <input id="compl" name="compl" value="compl" class="opt" type="checkbox">
+            Complement
+          </label>
+          <label for='rev'>
+            <input id="rev" name="rev" value="rev" class="opt" type="checkbox">
+            Reverse
+          </label>
+          <label for='revcompl'>
+            <input id="revcompl" name="revcompl" class="opt" value="revcompl" type="checkbox">
+            Reverse Complement
+          </label>
+          <br>
+          <label for='prot'>
+            <input id="prot" name="prot" value="prot" class="opt" type="checkbox">
+            Amino Acid Sequence(s)
+          </label>
+          <div class="hidden-input input-group">
+            <label for="1f">
+              <input class="frames" name="frames" value=1  type="radio">
+              1 Frame
+            </label>
+            <label for="3f">
+              <input class="frames" name="frames" value=3  type="radio">
+              3 Frames
+            </label>
+            <label for="6f">
+              <input class="frames" name="frames" value=6  type="radio" checked>
+              6 Frames
+            </label>
+          </div>
+          <div class ="hidden-input input-group">
+            <label for="style">
+              <input class="style" name="styles" value="c"  type="radio" checked>
+              Compact 
+            </label>
+            <label for="style">
+              <input class="style" name="styles" value="v"  type="radio">
+              Verbose
+            </label>
+            <br>
+          </div>
+          <label for='all'>
+            <input id="all" name="all" value="all" type="checkbox" id="all">
+            Select All
+          </label>
+      </div>
+        <button class="submit-btn" type='submit'>Upload and Extract</button>
+    </form>
+  </div>
+  <div id = "box4">
+  </div>
+  <div id = "box5">
+    <button class = "hidden-input">
+      <a href="#">Back to Top</a><br>
+    </button>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+  <script src='./script.js'></script>
+</body>
+</html>
+`
