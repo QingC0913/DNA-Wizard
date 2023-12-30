@@ -10,6 +10,8 @@ backend: Node.js / Express
 to run: 
 from root folder
 npm start
+* once the server is running, the message ✨🌟  Server is running on http://localhost:5000  🌟✨ 
+will be printed at the console and the web app will be at http://localhost:5000
 
 some tutorials / sources: 
 Multer: sending file data from frontend to backend 
