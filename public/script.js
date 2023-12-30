@@ -61,10 +61,10 @@ function isValidFASTA(fasta) {
 }
 
 function sendFile(formData) {
-    const appURL = "http://dna-wizard.us-3.evennode.com/"; 
-    // const appURL = "http://localhost:5000/"; 
+    // free trial expired 
+    // const appURL = "http://dna-wizard.us-3.evennode.com/"; 
+    const appURL = "http://localhost:5000/"; 
     fetch(`${appURL}upload_file`, {
-    // fetch(`${vercelURL}/upload_file`, {
         method: 'POST',
         body: formData,
     }).then((res) => {

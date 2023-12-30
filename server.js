@@ -16,9 +16,6 @@ app.use(cors());
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
 });
-// app.get('/', (req, res) => {
-//   res.send(html);
-// })
 
 // Multer middleware for file upload
 const upload = multer({ dest: 'uploads/' });
